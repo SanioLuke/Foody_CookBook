@@ -9,9 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="second_black">#333333</color>
     <color name="light_dark">#838383</color>
-    <color name="second_white">#F8F8F8</color>
-    <color name="dark_blue_color">#002A7C</color>
     <color name="main_color">#0064C8</color>
-    <color name="second_color">#0080FF</color>
-    <color name="light_color">#4990FF</color>
 </resources>

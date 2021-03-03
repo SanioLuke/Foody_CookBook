@@ -9,31 +9,25 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.BounceInterpolator;
-import android.view.animation.ScaleAnimation;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.cookbook.Activities.FoodDetailsActivity;
-import com.example.cookbook.Data.MainPageModel;
+import com.example.cookbook.DataModels.MainPageModel;
 import com.example.cookbook.LocalDB.FavDBHelper;
 import com.example.cookbook.R;
-
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
 public class MainPageAdapter extends RecyclerView.Adapter<MainPageAdapter.ListViewHolder> {
 
     Context context;
-    ArrayList<MainPageModel> all_random_food= new ArrayList<>();
+    ArrayList<MainPageModel> all_random_food;
     FavDBHelper favDBHelper;
     int pos;
 
@@ -62,7 +56,6 @@ public class MainPageAdapter extends RecyclerView.Adapter<MainPageAdapter.ListVi
         }
 
         favDBHelper= new FavDBHelper(context);
-
         if(favDBHelper.checkSpecficFood(all_random_food.get(position).getIdMeal()) > 0){
             holder.mpage_item_fav.setImageTintList(ColorStateList.valueOf(Color.RED));
         }
@@ -77,30 +70,24 @@ public class MainPageAdapter extends RecyclerView.Adapter<MainPageAdapter.ListVi
                 .load(all_random_food.get(position).getStrMealThumb())
                 .into(holder.mpage_food_img);
 
-        holder.mpage_main_container.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, FoodDetailsActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("meal_id", all_random_food.get(position).getIdMeal());
-                context.startActivity(intent);
-            }
+        holder.mpage_main_container.setOnClickListener(v -> {
+            Intent intent = new Intent(context, FoodDetailsActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.putExtra("meal_id", all_random_food.get(position).getIdMeal());
+            context.startActivity(intent);
         });
 
-        holder.mpage_item_fav.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(favDBHelper.checkSpecficFood(all_random_food.get(position).getIdMeal()) > 0){
-                    if(favDBHelper.removeFavFood(all_random_food.get(position).getIdMeal())){
-                        Log.e("Fav_action","Item removed");
-                        holder.mpage_item_fav.setImageTintList(ColorStateList.valueOf(Color.parseColor("#D8D8D8")));
-                    }
+        holder.mpage_item_fav.setOnClickListener(v -> {
+            if(favDBHelper.checkSpecficFood(all_random_food.get(position).getIdMeal()) > 0){
+                if(favDBHelper.removeFavFood(all_random_food.get(position).getIdMeal())){
+                    Log.e("Fav_action","Item removed");
+                    holder.mpage_item_fav.setImageTintList(ColorStateList.valueOf(Color.parseColor("#D8D8D8")));
                 }
-                else {
-                    if(favDBHelper.addFavFood(all_random_food.get(position).getIdMeal())){
-                        Log.e("Fav_action","Item added");
-                        holder.mpage_item_fav.setImageTintList(ColorStateList.valueOf(Color.RED));
-                    }
+            }
+            else {
+                if(favDBHelper.addFavFood(all_random_food.get(position).getIdMeal())){
+                    Log.e("Fav_action","Item added");
+                    holder.mpage_item_fav.setImageTintList(ColorStateList.valueOf(Color.RED));
                 }
             }
         });

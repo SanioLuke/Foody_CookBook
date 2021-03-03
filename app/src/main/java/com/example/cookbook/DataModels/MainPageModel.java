@@ -1,4 +1,4 @@
-package com.example.cookbook.Data;
+package com.example.cookbook.DataModels;
 
 public class MainPageModel {
 
@@ -17,39 +17,20 @@ public class MainPageModel {
         return idMeal;
     }
 
-    public void setIdMeal(int idMeal) {
-        this.idMeal = idMeal;
-    }
-
     public String getStrMeal() {
         return strMeal;
-    }
-
-    public void setStrMeal(String strMeal) {
-        this.strMeal = strMeal;
     }
 
     public String getStrCategory() {
         return strCategory;
     }
 
-    public void setStrCategory(String strCategory) {
-        this.strCategory = strCategory;
-    }
-
     public String getStrArea() {
         return strArea;
-    }
-
-    public void setStrArea(String strArea) {
-        this.strArea = strArea;
     }
 
     public String getStrMealThumb() {
         return strMealThumb;
     }
 
-    public void setStrMealThumb(String strMealThumb) {
-        this.strMealThumb = strMealThumb;
-    }
 }
