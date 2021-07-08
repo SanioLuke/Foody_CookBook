@@ -63,29 +63,30 @@ public class MainPageAdapter extends RecyclerView.Adapter<MainPageAdapter.ListVi
             holder.mpage_item_fav.setImageTintList(ColorStateList.valueOf(Color.parseColor("#D8D8D8")));
         }
 
-        holder.mpage_food_name.setText("Name:    "+all_random_food.get(position).getStrMeal());
-        holder.mpage_food_cat_name.setText("Category:    "+all_random_food.get(position).getStrCategory());
-        holder.mpage_food_area_name.setText("Area:    "+all_random_food.get(position).getStrArea());
-        Glide.with(context)
-                .load(all_random_food.get(position).getStrMealThumb())
-                .into(holder.mpage_food_img);
+        MainPageModel each_item= all_random_food.get(position);
+
+        holder.mpage_food_name.setText("Name:    "+each_item.getStrMeal());
+        holder.mpage_food_cat_name.setText("Category:    "+each_item.getStrCategory());
+        holder.mpage_food_area_name.setText("Area:    "+each_item.getStrArea());
+        Glide.with(context).load(each_item.getStrMealThumb()).into(holder.mpage_food_img);
 
         holder.mpage_main_container.setOnClickListener(v -> {
             Intent intent = new Intent(context, FoodDetailsActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.putExtra("meal_id", all_random_food.get(position).getIdMeal());
+            intent.putExtra("each_meal", each_item);
             context.startActivity(intent);
         });
 
         holder.mpage_item_fav.setOnClickListener(v -> {
-            if(favDBHelper.checkSpecficFood(all_random_food.get(position).getIdMeal()) > 0){
-                if(favDBHelper.removeFavFood(all_random_food.get(position).getIdMeal())){
+            if(favDBHelper.checkSpecficFood(each_item.getIdMeal()) > 0){
+                if(favDBHelper.removeFavFood(each_item.getIdMeal())){
                     Log.e("Fav_action","Item removed");
                     holder.mpage_item_fav.setImageTintList(ColorStateList.valueOf(Color.parseColor("#D8D8D8")));
                 }
             }
             else {
-                if(favDBHelper.addFavFood(all_random_food.get(position).getIdMeal())){
+                if(favDBHelper.addFavFood(each_item.getIdMeal(),each_item.getStrMeal(), each_item.getStrCategory(), each_item.getStrArea(),
+                        each_item.getStrMealThumb(), each_item.getStrInstructions(), each_item.getStrTags(), each_item.getStrYoutube())){
                     Log.e("Fav_action","Item added");
                     holder.mpage_item_fav.setImageTintList(ColorStateList.valueOf(Color.RED));
                 }
@@ -94,8 +95,24 @@ public class MainPageAdapter extends RecyclerView.Adapter<MainPageAdapter.ListVi
     }
 
     @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
+
+    @Override
     public int getItemCount() {
-        return all_random_food.size();
+        if(all_random_food!=null){
+            return all_random_food.size();
+        }
+        else {
+            return 0;
+        }
+
     }
 
     public static class ListViewHolder extends RecyclerView.ViewHolder {

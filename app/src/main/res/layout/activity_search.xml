@@ -19,7 +19,6 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="10dp"
             android:background="@android:color/transparent"
-            android:foreground="?attr/selectableItemBackground"
             android:padding="10dp"
             android:src="@drawable/ic_arrow_back"
             android:tint="@color/second_black"
@@ -37,7 +36,7 @@
             android:hint="Search here....."
             android:inputType="text"
             android:padding="15dp"
-            android:textColorHint="?attr/colorPrimaryDark"
+            android:textColorHint="@color/main_color"
             android:textSize="14sp"
             tools:ignore="Autofill,HardcodedText" />
 
@@ -48,7 +47,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="20dp"
+        android:visibility="gone"
         android:layout_below="@+id/s_searchbox_lay"
         tools:listitem="@layout/mainpageitems"/>
+
+    <TextView
+        android:id="@+id/search_items_notfound"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="Search any food item you want."
+        android:layout_centerInParent="true"/>
 
 </RelativeLayout>

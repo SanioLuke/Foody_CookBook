@@ -1,16 +1,21 @@
 package com.example.cookbook.DataModels;
 
-public class MainPageModel {
+import java.io.Serializable;
+
+public class MainPageModel implements Serializable {
 
     int idMeal;
-    String strMeal, strCategory, strArea, strMealThumb;
+    String strMeal, strCategory, strArea, strMealThumb, strInstructions, strTags, strYoutube;
 
-    public MainPageModel(int idMeal, String strMeal, String strCategory, String strArea, String strMealThumb) {
+    public MainPageModel(int idMeal, String strMeal, String strCategory, String strArea, String strMealThumb, String strInstructions, String strTags, String strYoutube) {
         this.idMeal = idMeal;
         this.strMeal= strMeal;
         this.strCategory = strCategory;
         this.strArea = strArea;
         this.strMealThumb = strMealThumb;
+        this.strInstructions= strInstructions;
+        this.strTags= strTags;
+        this.strYoutube= strYoutube;
     }
 
     public int getIdMeal() {
@@ -33,4 +38,15 @@ public class MainPageModel {
         return strMealThumb;
     }
 
+    public String getStrInstructions() {
+        return strInstructions;
+    }
+
+    public String getStrTags() {
+        return strTags;
+    }
+
+    public String getStrYoutube() {
+        return strYoutube;
+    }
 }

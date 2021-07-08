@@ -28,7 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_launcher_background"
+                android:src="@mipmap/ic_launcher"
                 tools:ignore="ContentDescription" />
 
         </androidx.cardview.widget.CardView>
@@ -48,7 +48,7 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="10dp"
                 android:fontFamily="serif"
-                android:text="Name: Spicy Arrabiata Penne"
+                android:text="Food Product Name"
                 android:textSize="13sp"/>
 
             <TextView
@@ -58,7 +58,7 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="10dp"
                 android:fontFamily="serif"
-                android:text="Category: Vegetarian"
+                android:text="Category"
                 android:textSize="13sp"/>
 
             <TextView
@@ -68,7 +68,7 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="10dp"
                 android:fontFamily="serif"
-                android:text="Area: Italian"
+                android:text="Area / Region"
                 android:textSize="13sp"/>
 
         </LinearLayout>
@@ -83,6 +83,7 @@
             android:background="@android:color/transparent"
             android:layout_alignParentEnd="true"
             app:tint="#D8D8D8"
+            android:padding="10dp"
             android:src="@drawable/ic_favorite"
             android:contentDescription="TODO"
             tools:ignore="ContentDescription,HardcodedText" />
